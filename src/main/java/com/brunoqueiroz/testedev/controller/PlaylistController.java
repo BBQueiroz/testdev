@@ -3,8 +3,6 @@ package com.brunoqueiroz.testedev.controller;
 import com.brunoqueiroz.testedev.dtos.PlaylistDTO;
 import com.brunoqueiroz.testedev.model.Playlist;
 import com.brunoqueiroz.testedev.services.PlaylistService;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,21 +11,23 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@CrossOrigin
+@RequestMapping("/lists")
 public class PlaylistController {
 
-    PlaylistService playlistService;
+    private final PlaylistService playlistService;
 
-    public PlaylistController(PlaylistService playlistService) {this.playlistService = playlistService;}
+    public PlaylistController(PlaylistService playlistService) {
+        this.playlistService = playlistService;
+    }
 
-    @PostMapping("/lists")
+    @PostMapping
     public ResponseEntity<Object> savePlaylist(@RequestBody @Valid PlaylistDTO playlistDto){
         Playlist savedPlaylist;
 
         try{
+
             savedPlaylist = playlistService.save(playlistDto);
         } catch (IllegalArgumentException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -35,10 +35,10 @@ public class PlaylistController {
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
-                .path("/{id}")
+                .path("/{nome}")
                 .buildAndExpand(savedPlaylist.getNome())
                 .toUri();
-        return ResponseEntity.status(HttpStatus.CREATED).body(playlistService.save(playlistDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body("201 Created");
     }
     @GetMapping
     public ResponseEntity<List<Playlist>> getAllPlaylists(){
@@ -46,7 +46,7 @@ public class PlaylistController {
         return ResponseEntity.status(HttpStatus.OK).body(playlists);
     }
 
-    @GetMapping("/lists/{nome}")
+    @GetMapping("/{nome}")
     public ResponseEntity<Object> getOnePlaylist(@PathVariable(value = "nome") String nome){
         Playlist playlist = new Playlist();
 
@@ -58,7 +58,7 @@ public class PlaylistController {
         return ResponseEntity.status(HttpStatus.OK).body(playlist);
     }
 
-    @DeleteMapping("/lists/{nome}")
+    @DeleteMapping("/{nome}")
     public ResponseEntity<Object> deletePlaylist(@PathVariable(value = "nome") String nome){
         try {
             playlistService.delete(nome);
