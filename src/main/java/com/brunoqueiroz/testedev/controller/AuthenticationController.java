@@ -1,13 +1,12 @@
 package com.brunoqueiroz.testedev.controller;
 
-import com.brunoqueiroz.testedev.dtos.AuthenticationDTO;
-import com.brunoqueiroz.testedev.dtos.LoginResponseDTO;
-import com.brunoqueiroz.testedev.dtos.RegisterDTO;
-import com.brunoqueiroz.testedev.infra.TokenService;
-import com.brunoqueiroz.testedev.model.Users;
-import com.brunoqueiroz.testedev.repository.UsersRepository;
+import com.brunoqueiroz.testedev.infra.security.dtos.AuthenticationDTO;
+import com.brunoqueiroz.testedev.infra.security.dtos.LoginResponseDTO;
+import com.brunoqueiroz.testedev.infra.security.dtos.RegisterDTO;
+import com.brunoqueiroz.testedev.infra.security.TokenService;
+import com.brunoqueiroz.testedev.domain.user.Users;
+import com.brunoqueiroz.testedev.domain.user.UsersRepository;
 import jakarta.validation.Valid;
-import org.apache.catalina.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,6 +1,8 @@
-package com.brunoqueiroz.testedev.model;
+package com.brunoqueiroz.testedev.domain.playlists;
 
-import com.brunoqueiroz.testedev.dtos.PlaylistDTO;
+import com.brunoqueiroz.testedev.domain.musics.Music;
+import com.brunoqueiroz.testedev.domain.playlists.dto.NewPlaylistDTO;
+import com.brunoqueiroz.testedev.domain.playlists.dto.PlaylistDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,11 +32,9 @@ public class Playlist {
     @OneToMany(mappedBy = "playlist", cascade = CascadeType.ALL)
     private List<Music> musics;
 
-
-
-    public Playlist(PlaylistDTO playlistDTO) {
-        this.nome = playlistDTO.nome();
-        this.descricao = playlistDTO.descricao();
-        this.musics = playlistDTO.musics().stream().map(music -> new Music(music, this)).toList();
+    public Playlist(NewPlaylistDTO dto) {
+        this.nome = dto.nome();
+        this.descricao = dto.descricao();
+        this.musics = dto.musics().stream().map(music -> new Music(music, this)).toList();
     }
 }

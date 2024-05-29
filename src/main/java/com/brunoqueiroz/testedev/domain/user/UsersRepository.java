@@ -1,6 +1,5 @@
-package com.brunoqueiroz.testedev.repository;
+package com.brunoqueiroz.testedev.domain.user;
 
-import com.brunoqueiroz.testedev.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 

@@ -1,4 +1,4 @@
-package com.brunoqueiroz.testedev.model;
+package com.brunoqueiroz.testedev.domain.user;
 
 import lombok.Getter;
 

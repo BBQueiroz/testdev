@@ -1,6 +1,6 @@
-package com.brunoqueiroz.testedev.infra;
+package com.brunoqueiroz.testedev.infra.security;
 
-import com.brunoqueiroz.testedev.repository.UsersRepository;
+import com.brunoqueiroz.testedev.domain.user.UsersRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

@@ -1,20 +1,21 @@
-package com.brunoqueiroz.testedev.model;
+package com.brunoqueiroz.testedev.domain.musics;
 
+import com.brunoqueiroz.testedev.domain.playlists.Playlist;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="TB_MUSIC")
-@ToString(exclude = "playlist")
+@EqualsAndHashCode(of = {"id"})
 public class Music {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column(nullable = false, length = 70)
     private String titulo;
 
@@ -30,8 +31,8 @@ public class Music {
     @Column(nullable = false, length = 70)
     private String genero;
 
-    @ManyToOne
-    @JoinColumn(name="playlist_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="PLAYLIST_ID")
     @JsonIgnore
     private Playlist playlist;
 

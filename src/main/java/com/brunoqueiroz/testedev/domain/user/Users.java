@@ -1,4 +1,4 @@
-package com.brunoqueiroz.testedev.model;
+package com.brunoqueiroz.testedev.domain.user;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name="TB_USERS")

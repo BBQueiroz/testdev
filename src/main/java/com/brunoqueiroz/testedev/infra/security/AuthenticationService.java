@@ -1,6 +1,6 @@
-package com.brunoqueiroz.testedev.services;
+package com.brunoqueiroz.testedev.infra.security;
 
-import com.brunoqueiroz.testedev.repository.UsersRepository;
+import com.brunoqueiroz.testedev.domain.user.UsersRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
