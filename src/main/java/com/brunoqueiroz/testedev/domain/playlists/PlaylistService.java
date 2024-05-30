@@ -3,6 +3,7 @@ package com.brunoqueiroz.testedev.domain.playlists;
 import com.brunoqueiroz.testedev.domain.playlists.dto.NewPlaylistDTO;
 import com.brunoqueiroz.testedev.domain.playlists.dto.PlaylistDTO;
 import com.brunoqueiroz.testedev.domain.musics.MusicRepository;
+import com.brunoqueiroz.testedev.domain.playlists.dto.UpdatePlaylistDTO;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -31,6 +32,15 @@ public class PlaylistService {
     public Playlist save(NewPlaylistDTO dto) {
         Playlist playlist = new Playlist(dto);
         playlistRepository.save(playlist);
+        return playlist;
+    }
+
+    @Transactional
+    public Playlist update(Long id, UpdatePlaylistDTO dto){
+        Playlist playlist = playlistRepository.findById(id).orElseThrow();
+        playlist.update(dto);
+        playlistRepository.save(playlist);
+
         return playlist;
     }
 

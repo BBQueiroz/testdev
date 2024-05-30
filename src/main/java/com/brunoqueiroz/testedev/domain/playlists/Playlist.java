@@ -3,12 +3,14 @@ package com.brunoqueiroz.testedev.domain.playlists;
 import com.brunoqueiroz.testedev.domain.musics.Music;
 import com.brunoqueiroz.testedev.domain.playlists.dto.NewPlaylistDTO;
 import com.brunoqueiroz.testedev.domain.playlists.dto.PlaylistDTO;
+import com.brunoqueiroz.testedev.domain.playlists.dto.UpdatePlaylistDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -35,6 +37,11 @@ public class Playlist {
     public Playlist(NewPlaylistDTO dto) {
         this.nome = dto.nome();
         this.descricao = dto.descricao();
-        this.musics = dto.musics().stream().map(music -> new Music(music, this)).toList();
+        this.musics = new ArrayList<>();
+    }
+
+    public void update(UpdatePlaylistDTO dto){
+        this.nome = dto.nome();
+        this.descricao = dto.descricao();
     }
 }

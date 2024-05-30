@@ -4,6 +4,7 @@ import com.brunoqueiroz.testedev.domain.playlists.dto.NewPlaylistDTO;
 import com.brunoqueiroz.testedev.domain.playlists.dto.PlaylistDTO;
 import com.brunoqueiroz.testedev.domain.playlists.Playlist;
 import com.brunoqueiroz.testedev.domain.playlists.PlaylistService;
+import com.brunoqueiroz.testedev.domain.playlists.dto.UpdatePlaylistDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -53,6 +54,15 @@ public class PlaylistController {
         PlaylistDTO playlistDTO = new PlaylistDTO(playlist);
         return ResponseEntity.ok(playlistDTO);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PlaylistDTO> update(@PathVariable(value = "id") Long id, @RequestBody @Valid UpdatePlaylistDTO dto){
+        Playlist playlist = playlistService.update(id, dto);
+        PlaylistDTO playlistDTO = new PlaylistDTO(playlist);
+
+        return ResponseEntity.ok(playlistDTO);
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deletePlaylist(@PathVariable(value = "id") Long id){

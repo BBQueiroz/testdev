@@ -1,5 +1,6 @@
 package com.brunoqueiroz.testedev.domain.musics;
 
+import com.brunoqueiroz.testedev.domain.musics.dto.NewMusicDTO;
 import com.brunoqueiroz.testedev.domain.playlists.Playlist;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -42,6 +43,15 @@ public class Music {
         this.album = music.getAlbum();
         this.ano = music.getAno();
         this.genero = music.getGenero();
+        this.playlist = playlist;
+    }
+
+    public Music(Playlist playlist, NewMusicDTO dto) {
+        this.titulo = dto.titulo();
+        this.artista = dto.artista();
+        this.album = dto.album();
+        this.ano = dto.ano();
+        this.genero = dto.genero();
         this.playlist = playlist;
     }
 }

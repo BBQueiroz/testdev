@@ -43,9 +43,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .anyRequest().authenticated()
                 )
-                .securityContext((context) -> context
+                .securityContext(context -> context
                         .securityContextRepository(securityContextRepository()))
-                .sessionManagement((sessionManagement) -> sessionManagement
+                .sessionManagement(sessionManagement -> sessionManagement
                         .sessionConcurrency((sessionConcurrency -> sessionConcurrency
                                 .maximumSessions(1).expiredUrl("/login?expired"))))
                 .httpBasic(withDefaults())
