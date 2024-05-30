@@ -4,8 +4,6 @@ import com.brunoqueiroz.testedev.domain.musics.dto.NewMusicDTO;
 import com.brunoqueiroz.testedev.domain.playlists.Playlist;
 import com.brunoqueiroz.testedev.domain.playlists.PlaylistRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
